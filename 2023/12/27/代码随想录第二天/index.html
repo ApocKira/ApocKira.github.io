@@ -27,7 +27,7 @@
 <meta property="og:description" content="977 有序数组的平方https:&#x2F;&#x2F;leetcode.com&#x2F;problems&#x2F;squares-of-a-sorted-array&#x2F;description&#x2F; 暴力解法： 先平方得到平方后的array，后排序 O(N+NlogN) 这里不写解法，需要自己写sort algo或者直接用语言自带的sort function 双指针解法更快：因为数组两端肯定出一个最大值，向中间得到越来越小的平方数，则我">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-28T00:46:56.000Z">
-<meta property="article:modified_time" content="2023-12-28T02:35:47.586Z">
+<meta property="article:modified_time" content="2023-12-28T21:34:57.052Z">
 <meta property="article:author" content="Zhiwen Yang">
 <meta name="twitter:card" content="summary">
 
@@ -118,7 +118,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -174,9 +174,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-12-27 19:46:56 / Modified: 21:35:47" itemprop="dateCreated datePublished" datetime="2023-12-27T19:46:56-05:00">2023-12-27</time>
+      <time title="Created: 2023-12-27 19:46:56" itemprop="dateCreated datePublished" datetime="2023-12-27T19:46:56-05:00">2023-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-12-28 16:34:57" itemprop="dateModified" datetime="2023-12-28T16:34:57-05:00">2023-12-28</time>
     </span>
 
   
@@ -201,7 +207,7 @@
 <p>滑动窗口的精髓就在于：设置滑动窗口的终点位置为索引，动态调节滑动窗口的起始位置</p>
 <p>具体实现：<br>sum +&#x3D; 终止位置的值；<br>如果（这一步的判断是while,不是if, 如果sum超过target，就把起始位置一直移到不超过为止，记录result）sum超过了target，记录result 后 sum减掉起始位置的值后起始位置前移一格。</p>
 <p>最后比较result和Integer max</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span>[] nums)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> <span class="number">0</span>; right &lt; nums.length; right++)&#123;</span><br><span class="line">			sum+=nums[right];</span><br><span class="line">			<span class="keyword">if</span>(sum &gt;= target)&#123;</span><br><span class="line">				result = Math.min(result, right-left + <span class="number">1</span>);</span><br><span class="line">				sum -= nums[left];</span><br><span class="line">				left++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> result == Integer.MAX_VALUE ? <span class="number">0</span> : result;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span>[] nums)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> <span class="number">0</span>; right &lt; nums.length; right++)&#123;</span><br><span class="line">			sum+=nums[right];</span><br><span class="line">			<span class="keyword">while</span>(sum &gt;= target)&#123;</span><br><span class="line">				result = Math.min(result, right-left + <span class="number">1</span>);</span><br><span class="line">				sum -= nums[left];</span><br><span class="line">				left++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> result == Integer.MAX_VALUE ? <span class="number">0</span> : result;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="59-螺旋矩阵II"><a href="#59-螺旋矩阵II" class="headerlink" title="59 螺旋矩阵II"></a>59 螺旋矩阵II</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/spiral-matrix-ii/description/">https://leetcode.com/problems/spiral-matrix-ii/description/</a></p>
 <p>给定一个整数n，画出从1到n^2的螺旋数组。</p>
@@ -231,6 +237,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/12/28/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%89%E5%A4%A9/" rel="next" title="代码随想录第三天">
+                  代码随想录第三天 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

@@ -19,23 +19,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"apockira.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Leetcode Notes">
-<meta property="og:url" content="https://apockira.github.io/index.html">
+    <meta name="description" content="链表理论基础链表是通过指针串联在一起的线性结构。 由data和指针构成 最后一个节点指向null 特殊：双链表： 由data和两个指针域构成，一个指向下一个节点，一个指向上一个节点循环链表： 链表收尾相连 存储方式：在内存中不是连续分布的，是散乱在内存中的 创建链表 这种写法来自kamacoder网上链表基础 1234567891011121314151617181920class LinkedL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录第三天">
+<meta property="og:url" content="https://apockira.github.io/2023/12/28/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%89%E5%A4%A9/index.html">
 <meta property="og:site_name" content="Leetcode Notes">
+<meta property="og:description" content="链表理论基础链表是通过指针串联在一起的线性结构。 由data和指针构成 最后一个节点指向null 特殊：双链表： 由data和两个指针域构成，一个指向下一个节点，一个指向上一个节点循环链表： 链表收尾相连 存储方式：在内存中不是连续分布的，是散乱在内存中的 创建链表 这种写法来自kamacoder网上链表基础 1234567891011121314151617181920class LinkedL">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-12-28T20:50:31.000Z">
+<meta property="article:modified_time" content="2023-12-29T05:10:38.397Z">
 <meta property="article:author" content="Zhiwen Yang">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://apockira.github.io/">
+<link rel="canonical" href="https://apockira.github.io/2023/12/28/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%89%E5%A4%A9/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://apockira.github.io/2023/12/28/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%89%E5%A4%A9/","path":"2023/12/28/代码随想录第三天/","title":"代码随想录第三天"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Leetcode Notes</title>
+<title>代码随想录第三天 | Leetcode Notes</title>
   
 
 
@@ -65,7 +69,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Leetcode Notes</h1>
+      <p class="site-title">Leetcode Notes</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">代码随想录刷题笔记</p>
@@ -88,7 +92,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -101,6 +105,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">链表理论基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#203-%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0"><span class="nav-number">2.</span> <span class="nav-text">203 移除链表元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#707-%E8%AE%BE%E8%AE%A1%E9%93%BE%E8%A1%A8"><span class="nav-number">3.</span> <span class="nav-text">707 设计链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="nav-number">4.</span> <span class="nav-text">206 反转链表</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -130,16 +135,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://apockira.github.io/2023/12/28/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%89%E5%A4%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -153,13 +159,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Leetcode Notes">
+      <meta itemprop="name" content="代码随想录第三天 | Leetcode Notes">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/28/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%89%E5%A4%A9/" class="post-title-link" itemprop="url">代码随想录第三天</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          代码随想录第三天
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -188,8 +194,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="链表理论基础"><a href="#链表理论基础" class="headerlink" title="链表理论基础"></a>链表理论基础</h1><p>链表是通过指针串联在一起的线性结构。 由data和指针构成</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="链表理论基础"><a href="#链表理论基础" class="headerlink" title="链表理论基础"></a>链表理论基础</h1><p>链表是通过指针串联在一起的线性结构。 由data和指针构成</p>
 <p>最后一个节点指向null</p>
 <p>特殊：<br>双链表： 由data和两个指针域构成，一个指向下一个节点，一个指向上一个节点<br>循环链表： 链表收尾相连</p>
 <p>存储方式：<br>在内存中不是连续分布的，是散乱在内存中的</p>
@@ -249,7 +254,6 @@
 
 <p>3.从后向前递归 (不太明白，需要再研究)</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">reverseList</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">		<span class="keyword">if</span>(head == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">if</span>(head.next == <span class="literal">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">		</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">last</span> <span class="operator">=</span> reverseList(head.next);</span><br><span class="line">		</span><br><span class="line">		head.next.next = head;</span><br><span class="line">		head.next = <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">return</span> last;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
     </div>
 
     
@@ -257,210 +261,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%BA%8C%E5%A4%A9/" rel="prev" title="代码随想录第二天">
+                  <i class="fa fa-angle-left"></i> 代码随想录第二天
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://apockira.github.io/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%BA%8C%E5%A4%A9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zhiwen Yang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leetcode Notes">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Leetcode Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%BA%8C%E5%A4%A9/" class="post-title-link" itemprop="url">代码随想录第二天</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-12-27 19:46:56" itemprop="dateCreated datePublished" datetime="2023-12-27T19:46:56-05:00">2023-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-28 16:34:57" itemprop="dateModified" datetime="2023-12-28T16:34:57-05:00">2023-12-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="977-有序数组的平方"><a href="#977-有序数组的平方" class="headerlink" title="977 有序数组的平方"></a>977 有序数组的平方</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/squares-of-a-sorted-array/description/">https://leetcode.com/problems/squares-of-a-sorted-array/description/</a></p>
-<p>暴力解法： 先平方得到平方后的array，后排序 O(N+NlogN)</p>
-<p>这里不写解法，需要自己写sort algo或者直接用语言自带的sort function</p>
-<p>双指针解法更快：<br>因为数组两端肯定出一个最大值，向中间得到越来越小的平方数，则我们可以使用左右双指针。<br>左指针和右指针的平方做对比，打的写在输出数组的最后的位置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span>[] sortedSquares(<span class="type">int</span>[] nums)&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">		<span class="type">int</span>[] result = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length];</span><br><span class="line">		<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> nums.length - <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">leftS</span> <span class="operator">=</span> nums[left] * nums[left];</span><br><span class="line">			<span class="type">int</span> <span class="variable">rightS</span> <span class="operator">=</span> nums[right] * nums[right];</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>(leftS &lt; rightS)&#123;</span><br><span class="line">				result[index--] = rightS;</span><br><span class="line">				right--;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				result[index--] = leftS;</span><br><span class="line">				left++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意两者在更新右区间的区别，设置右起始值，和更新右值有区别。</p>
-<h1 id="209-长度最小的子数组"><a href="#209-长度最小的子数组" class="headerlink" title="209 长度最小的子数组"></a>209 长度最小的子数组</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/minimum-size-subarray-sum/description/">https://leetcode.com/problems/minimum-size-subarray-sum/description/</a><br>给定一个都是正数的数组，找出最小连续子数组之和大于或等于target。</p>
-<p>暴力解法：<br>两个for循环找出所有可能性， 超时不具体实现</p>
-<p>滑动窗口：<br>不断调节子序列的起始位置和终止位置，从而得到结果<br>因为所需时间复杂度为O（N）所以循环索引必定为滑动窗口的终止位置；<br>即滑动窗口的起始位置需要在用一个for loop里实现动态调节。</p>
-<p>滑动窗口的精髓就在于：设置滑动窗口的终点位置为索引，动态调节滑动窗口的起始位置</p>
-<p>具体实现：<br>sum +&#x3D; 终止位置的值；<br>如果（这一步的判断是while,不是if, 如果sum超过target，就把起始位置一直移到不超过为止，记录result）sum超过了target，记录result 后 sum减掉起始位置的值后起始位置前移一格。</p>
-<p>最后比较result和Integer max</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minSubArrayLen</span><span class="params">(<span class="type">int</span> target, <span class="type">int</span>[] nums)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> <span class="number">0</span>; right &lt; nums.length; right++)&#123;</span><br><span class="line">			sum+=nums[right];</span><br><span class="line">			<span class="keyword">while</span>(sum &gt;= target)&#123;</span><br><span class="line">				result = Math.min(result, right-left + <span class="number">1</span>);</span><br><span class="line">				sum -= nums[left];</span><br><span class="line">				left++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> result == Integer.MAX_VALUE ? <span class="number">0</span> : result;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="59-螺旋矩阵II"><a href="#59-螺旋矩阵II" class="headerlink" title="59 螺旋矩阵II"></a>59 螺旋矩阵II</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/spiral-matrix-ii/description/">https://leetcode.com/problems/spiral-matrix-ii/description/</a></p>
-<p>给定一个整数n，画出从1到n^2的螺旋数组。</p>
-<p>此题为模拟题型，模拟顺时针画法</p>
-<p>循环不变量原则 （二分法也遵循了这一原则）</p>
-<p>模拟顺时针画矩阵的过程:</p>
-<p>填充上行从左到右<br>填充右列从上到下<br>填充下行从右到左<br>填充左列从下到上</p>
-<p>遵循左闭右开原则一直顺时针画边。</p>
-<p>以4为例 模拟总过程<br>二维数组new int [4][4]</p>
-<p>first loop<br>[0,0][0,1][0,2]<br>[0,3][1,3][2,3]<br>[3,3][3,2][3,1]<br>[3,0][2,0][1,0]</p>
-<p>起始位置+1 +1<br>second loop<br>[1,1]<br>[1,2]<br>[2,2]<br>[2,1]</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[][] generateMatrix(<span class="type">int</span> n) &#123;</span><br><span class="line">		<span class="type">int</span>[][] result = <span class="keyword">new</span> <span class="title class_">int</span>[n][n];</span><br><span class="line">		<span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">offset</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">loop</span> <span class="operator">=</span> n/<span class="number">2</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(loop-- &gt; <span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">for</span>(j = start; j &lt; n - offset; j++)&#123;</span><br><span class="line">				result[start][j] = count++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(i = start; i &lt; n - offset; i++)&#123;</span><br><span class="line">				result[i][j] = count++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(;j &gt; start; j--)&#123;</span><br><span class="line">				result[i][j] = count++;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">for</span>(;i &gt; start; i--)&#123;</span><br><span class="line">				result[i][j] = count++;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			offset++;</span><br><span class="line">			start++;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(n%<span class="number">2</span> == <span class="number">1</span>)&#123;</span><br><span class="line">			result[start][start] = count;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://apockira.github.io/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%80%E5%A4%A9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zhiwen Yang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leetcode Notes">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Leetcode Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%80%E5%A4%A9/" class="post-title-link" itemprop="url">代码随想录第一天</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-12-26 16:04:03" itemprop="dateCreated datePublished" datetime="2023-12-26T16:04:03-05:00">2023-12-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-27 00:08:57" itemprop="dateModified" datetime="2023-12-27T00:08:57-05:00">2023-12-27</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="数组理论基础"><a href="#数组理论基础" class="headerlink" title="数组理论基础"></a>数组理论基础</h1><p>数组存放在连续内存空间上的相同类型数据的集合</p>
-<p>数组下标从0开始<br>数组内存空间的地址是连续的</p>
-<p>Java 二维数组排布不是连续的</p>
-<h1 id="704-二分查找"><a href="#704-二分查找" class="headerlink" title="704 二分查找"></a>704 二分查找</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-search/description/">https://leetcode.com/problems/binary-search/description/</a></p>
-<p>数组有序，无重复元素</p>
-<p>左闭右闭</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(target &lt; nums[<span class="number">0</span>] || target &gt; nums[nums.length - <span class="number">1</span>])&#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length-<span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">if</span> (nums[mid] == target)&#123;</span><br><span class="line">				<span class="keyword">return</span> mid;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target)&#123;</span><br><span class="line">				left = mid + <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target)&#123;</span><br><span class="line">				right = mid - <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>左闭右开</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(target &lt; nums[<span class="number">0</span>] || target &gt; nums[nums.length - <span class="number">1</span>])&#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span> (nums[mid] == target)&#123;</span><br><span class="line">				<span class="keyword">return</span> mid;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target)&#123;</span><br><span class="line">				left = mid + <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target)&#123;</span><br><span class="line">				right = mid;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意两者在更新右区间的区别，设置右起始值，和更新右值有区别。</p>
-<h1 id="27-移除元素"><a href="#27-移除元素" class="headerlink" title="27 移除元素"></a>27 移除元素</h1><p>暴力解法</p>
-<p>查到元素之后，把剩余用for loop 往前覆盖一位，之后size自减1，i不自增</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> nums.length;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; size; i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(nums[i] == val)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; size; j++)&#123;</span><br><span class="line">					nums[j-<span class="number">1</span>] = nums[j];</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				size--;</span><br><span class="line">				i--;</span><br><span class="line">			</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> size;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>O(n^2)</p>
-<p>快慢同向指针</p>
-<p>如果fast找到val，slow不变<br>不一样，slow被fast覆盖，并+1</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">slowIndex</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">fastIndex</span> <span class="operator">=</span> <span class="number">0</span>; fastIndex &lt; nums.length; fastIndex++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(val != nums[fastIndex])&#123;</span><br><span class="line">				nums[slowIndex] = nums[fastIndex];</span><br><span class="line">				slowIndex++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> slowIndex;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>O(n)</p>
-<p>相向双指针</p>
-<p>先将右指针移到不是val的位置<br>右指针的val覆盖左指针是val的位置，最后左指针指的位置就是size</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(right &gt;= <span class="number">0</span> &amp;&amp; nums[right] == val) right--;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">			<span class="keyword">if</span> (nums[left] == val)&#123;</span><br><span class="line">				nums[left] = nums[right--];</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			left++;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">while</span>(right &gt;= <span class="number">0</span> &amp;&amp; nums[right] == val) right--;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> left;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>合并两个rightIndex找val</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">			<span class="keyword">if</span>(nums[left] == val)&#123;</span><br><span class="line">				nums[left] = nums[right];</span><br><span class="line">				right--;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			    left++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> left;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h1><h2 id="35-搜索插入位置"><a href="#35-搜索插入位置" class="headerlink" title="35 搜索插入位置"></a>35 搜索插入位置</h2><h2 id="34-在排序数组中查找元素的第一个和最后一个位置"><a href="#34-在排序数组中查找元素的第一个和最后一个位置" class="headerlink" title="34 在排序数组中查找元素的第一个和最后一个位置"></a>34 在排序数组中查找元素的第一个和最后一个位置</h2>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
