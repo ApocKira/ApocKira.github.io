@@ -27,8 +27,11 @@
 <meta property="og:description" content="链表理论基础链表是通过指针串联在一起的线性结构。 由data和指针构成 最后一个节点指向null 特殊：双链表： 由data和两个指针域构成，一个指向下一个节点，一个指向上一个节点循环链表： 链表收尾相连 存储方式：在内存中不是连续分布的，是散乱在内存中的 创建链表 这种写法来自kamacoder网上链表基础 1234567891011121314151617181920class LinkedL">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-28T20:50:31.000Z">
-<meta property="article:modified_time" content="2023-12-29T05:10:38.397Z">
+<meta property="article:modified_time" content="2023-12-31T02:34:45.054Z">
 <meta property="article:author" content="Zhiwen Yang">
+<meta property="article:tag" content="链表">
+<meta property="article:tag" content="链表操作">
+<meta property="article:tag" content="反转链表">
 <meta name="twitter:card" content="summary">
 
 
@@ -62,6 +65,9 @@
       <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -83,6 +89,10 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
+</nav>
 
 
 
@@ -111,6 +121,8 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhiwen Yang"
+      src="/images/avatar.gif">
   <p class="site-author-name" itemprop="name">Zhiwen Yang</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -122,8 +134,23 @@
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ApocKira" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ApocKira" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
         </div>
       </div>
@@ -182,7 +209,16 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-29 00:10:38" itemprop="dateModified" datetime="2023-12-29T00:10:38-05:00">2023-12-29</time>
+      <time title="Modified: 2023-12-30 21:34:45" itemprop="dateModified" datetime="2023-12-30T21:34:45-05:00">2023-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">代码随想录</span></a>
+        </span>
     </span>
 
   
@@ -261,6 +297,11 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag"># 链表</a>
+              <a href="/tags/%E9%93%BE%E8%A1%A8%E6%93%8D%E4%BD%9C/" rel="tag"># 链表操作</a>
+              <a href="/tags/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" rel="tag"># 反转链表</a>
+          </div>
 
         
 
