@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -155,6 +155,122 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://apockira.github.io/2024/01/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B9%9D%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhiwen Yang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leetcode Notes">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Leetcode Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/02/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B9%9D%E5%A4%A9/" class="post-title-link" itemprop="url">代码随想录第九天</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-01-02 21:45:07" itemprop="dateCreated datePublished" datetime="2024-01-02T21:45:07-05:00">2024-01-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-01-03 00:42:13" itemprop="dateModified" datetime="2024-01-03T00:42:13-05:00">2024-01-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">代码随想录</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="28-实现strStr"><a href="#28-实现strStr" class="headerlink" title="28 实现strStr()"></a>28 实现strStr()</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/">https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/</a></p>
+<p>KMP经典题目<br>当字符串不匹配时，可以记录一部分之前已经匹配的文本内容，避免从头匹配<br>主要是字符串匹配</p>
+<p>前缀表也就是next数组<br>前缀表是为了回退的，他记录了模式串与主串不匹配时，模式串应该从哪里开始重新匹配<br>前缀表的任务是当前位置匹配失败，找到之前已经匹配上的位置，再重新匹配<br>记录下标i之前包括i的字符串中，有多大长度的相同前缀后缀</p>
+<p>前缀是指不包含最后一个字符的所有以第一个字符开头的连续子串<br>后缀是指不包含第一个字符的所有以最后一个字符结尾的连续子串</p>
+<p>前缀表要求的就是相同前后缀的长度<br>需要做到最长相等前后缀长度</p>
+<p>如何计算前缀表<br>以aabaaf举例<br>a  最长相同前后缀长度 0<br>aa 最长相同前后缀长度 1 - a<br>aab 最长相同前后缀长度 0<br>aaba 最长相同前后缀长度 1 - a<br>aabaa 最长相同前后缀长度 2 - aa<br>aabaaf 最长相同前后缀长度 0</p>
+<p>模式串和前缀表对应位置的数字表示的就是下标i前包括i的字符串中，有多大长度的相同前缀后缀<br>找到不匹配的位置，找前一个字符的前缀表数值，前一个前缀表数值是2，所以把下标移动到下标2的位置继续匹配</p>
+<p>前缀表就是next数组，实现方式有两种，一种是前缀表，另一种是前缀表统一减一（右移一位，初始位置是-1）</p>
+<p>使用next数组进行匹配，匹配过程见gif图<br><img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B24.gif"></p>
+<p>具体解法：</p>
+<ol>
+<li>滑动窗口，简单的双指针</li>
+</ol>
+<p>一个指针指长string开头，一个指针指匹配string开头<br>找不到，就重新在长string中找下一个可以匹配的开头</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">strStr</span><span class="params">(String haystack, String needle)</span>&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">// setup length variable</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> haystack.length();</span><br><span class="line">		<span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> needle.length();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// easy check length</span></span><br><span class="line">		<span class="keyword">if</span>(m &lt; n)&#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//set two pointers</span></span><br><span class="line">		<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; </span><br><span class="line">		<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// set maximum i</span></span><br><span class="line">		<span class="keyword">while</span> (i &lt; m - n + <span class="number">1</span>)&#123;</span><br><span class="line">			<span class="comment">// change haystack pointer to the first equal character of needle</span></span><br><span class="line">			<span class="keyword">while</span> (i &lt; m &amp;&amp; haystack.charAt(i) != needle.charAt(j)) i++;</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// if there is no needle first character return</span></span><br><span class="line">			<span class="keyword">if</span> (i == m)&#123;</span><br><span class="line">				<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// compare each character in haystack and needle</span></span><br><span class="line">			<span class="keyword">while</span> (i &lt; m &amp;&amp; j &lt; n &amp;&amp; haystack.charAt(i) == needle.charAt(j))&#123;</span><br><span class="line">				i++;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// if complete needle is found</span></span><br><span class="line">			<span class="keyword">if</span> (j == n)&#123;</span><br><span class="line">				<span class="keyword">return</span> i - j;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="comment">// if needle is not found, return i to the next postion of the start</span></span><br><span class="line">				i = i - j + <span class="number">1</span>;</span><br><span class="line">				j = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>KMP算法，前缀减一法实现</li>
+<li>定义getNext函数构建next数组（计算模式串s，前缀表的过程）<ol>
+<li>初始化<br> 定义两个指针i和j，j指向前缀末尾位置，i指向后缀位置<br> 对next的初始化赋值，第一个值为-1</li>
+<li>处理前后缀不相同的情况<br> 因为j初始化为-1， i从1开始，进行是s[i] 和是s[j+1]的比较<br> 如果遇到s[i] 与 s[j+1]不相同 向前回退<br> s[i] 与 s[j+1] 不相同，就要找 j+1前一个元素在next数组里的值（就是next[j]）</li>
+<li>处理前后缀相同的情况<br> s[i] 与 s[j + 1] 相同，那么就同时向后移动i 和j 说明找到了相同的前后缀，同时还要将j（前缀的长度）赋给next[i]</li>
+</ol>
+</li>
+</ol>
+<p><img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B23.gif"></p>
+<ol start="2">
+<li>得到next数组之后，进行匹配<br>  定义两个下标j指向模式串起点， i指向文本串起始位置<br>  j 从 -1开始<br>  i 从 0开始<br>  s[i] 与 s[j+1] 比较</li>
+<li>如果不相同，j从next数组中找下一个匹配的位置</li>
+<li>相同，i和j同时向后移动<br>  如果j指向模式串的末尾，说明匹配到了，返回i-模式串长度 + 1</li>
+</ol>
+<p>具体实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">strStr</span><span class="params">(String haystack, String needle)</span>&#123;</span><br><span class="line">		<span class="type">int</span>[] next = getNext(needle);</span><br><span class="line">		<span class="keyword">if</span> (needle.length() &gt; haystack.length())&#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; haystack.length(); i++)&#123;</span><br><span class="line">			<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; haystack.charAt(i) != needle.charAt(j+<span class="number">1</span>))&#123;</span><br><span class="line">				j = next[j];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (haystack.charAt(i) == needle.charAt(j+<span class="number">1</span>)) j++;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span> (j == needle.length() - <span class="number">1</span>) <span class="keyword">return</span> i - needle.length() + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="type">int</span>[] getNext(String s)&#123;</span><br><span class="line">		<span class="type">int</span>[] next = <span class="keyword">new</span> <span class="title class_">int</span>[s.length()];</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">			<span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; s.charAt(i) != s.charAt(j + <span class="number">1</span>))&#123;</span><br><span class="line">				j = next[j];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (s.charAt(i) == s.charAt(j + <span class="number">1</span>))&#123;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			next[i] = j;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
