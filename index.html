@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -155,6 +155,127 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://apockira.github.io/2024/01/07/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E5%8D%81%E4%B8%89%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhiwen Yang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leetcode Notes">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Leetcode Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/07/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E5%8D%81%E4%B8%89%E5%A4%A9/" class="post-title-link" itemprop="url">代码随想录第十三天</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-01-07 13:59:02 / Modified: 15:50:01" itemprop="dateCreated datePublished" datetime="2024-01-07T13:59:02-05:00">2024-01-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">代码随想录</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="239-滑动窗口最大值"><a href="#239-滑动窗口最大值" class="headerlink" title="239 滑动窗口最大值"></a>239 滑动窗口最大值</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/sliding-window-maximum/description/">https://leetcode.com/problems/sliding-window-maximum/description/</a><br>在线性时间复杂度完成</p>
+<p>经典使用单调队列的题目</p>
+<p>难点是如何求一个区间里面的最大值</p>
+<p>此时需要一个队列，放进窗口元素，然后随着窗口的移动，队列一进一出，每次移动之后，队列返回最大值</p>
+<p>此队列没有必要维护窗口里的所有元素，只需要维护可能成为窗口里最大值的元素就可以，同时保证队列里的元素数值是由大到小的<br>维护元素单调递减或递增（这里是递减）的队列就是单调队列</p>
+<p>如何在不维护所有元素的情况下配合窗口移动</p>
+<p>pop() 如果窗口移除的元素value等于单调队列的出口元素，队列弹出元素，否则不用操作<br>push() 如果push的元素大于入口元素的数值，将队列入口弹出，指到push元素的数值小于等于队列入口元素数值为止</p>
+<p>保持这个规则，que.front()就一直会是最大值<br><img src="https://code-thinking.cdn.bcebos.com/gifs/239.%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC-2.gif"></p>
+<ol>
+<li><p>自定义数组，规则和上面的一样</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyQueue</span>&#123;</span><br><span class="line">    Deque&lt;Integer&gt; myqueue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 如果队列顶不是要退出的值，不动</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">poll</span><span class="params">(<span class="type">int</span> val)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!myqueue.isEmpty() &amp;&amp; val == myqueue.peek())&#123;</span><br><span class="line">            myqueue.pollFirst();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 推入的值和之前的值比较，推入的值大，就删一个，一直删到没有或者小于原队列的值</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> val)</span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!myqueue.isEmpty() &amp;&amp; val &gt; myqueue.getLast())&#123;</span><br><span class="line">            myqueue.removeLast();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        myqueue.add(val);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 队列顶部一定是最大值</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">peek</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> myqueue.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] maxSlidingWindow(<span class="type">int</span>[] nums, <span class="type">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> nums;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="type">MyQueue</span> <span class="variable">record</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyQueue</span>();</span><br><span class="line">        <span class="type">int</span>[] result = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length - k + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; k; i++)&#123;</span><br><span class="line">            record.add(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        result[<span class="number">0</span>] = record.peek();</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> k; i &lt; nums.length; i++)&#123;</span><br><span class="line">            record.poll(nums[i-k]);</span><br><span class="line">            record.add(nums[i]);</span><br><span class="line">            result[index++] = record.peek();</span><br><span class="line">        &#125;</span><br><span class="line">		</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>利用双端队列手动实现单调队列<br>用一个单调队列存储对应下标，窗口滑动时，直接取队列的头部指针对应的值放入结果集中</p>
+</li>
+</ol>
+<p>因为单调队列存储的时下标，则需要满足两个条件<br>    1. 队列的头节点需要在[i - k + 1, i]之中<br>    2. 既然是单调，所以放进去的数字要比末尾的大，否则弹出队尾</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] maxSlidingWindow(<span class="type">int</span>[] nums, <span class="type">int</span> k) &#123;</span><br><span class="line">        ArrayDeque&lt;Integer&gt; record = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] result = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length - k + <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">            <span class="keyword">while</span> (!record.isEmpty() &amp;&amp; record.peek() &lt; i - k + <span class="number">1</span>)&#123;</span><br><span class="line">                record.poll();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (!record.isEmpty() &amp;&amp; nums[record.getLast()] &lt; nums[i])&#123;</span><br><span class="line">                record.removeLast();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            record.add(i);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (i &gt;= k - <span class="number">1</span>)&#123;</span><br><span class="line">                result[index++] = nums[record.peek()];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="前K个高频元素"><a href="#前K个高频元素" class="headerlink" title="前K个高频元素"></a>前K个高频元素</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/top-k-frequent-elements/description/">https://leetcode.com/problems/top-k-frequent-elements/description/</a></p>
+<p>此题分三步</p>
+<ol>
+<li>统计元素出现频率</li>
+<li>对频率排序</li>
+<li>找出前K个高频元素</li>
+</ol>
+<p>统计用map来做</p>
+<p>终点是排序即优先级队列<br>优先级队列对外接口只是从队头取元素，从队尾添加元素<br>优先级队列内部元素是自动依照元素权值排列<br>堆是一颗完全二叉树，树中每个节点的值都不小于或不大于左右孩子的值<br>如果父亲节点大于等于左右孩子就是大顶堆<br>如果父亲节点小于等于左右孩子就是小顶堆</p>
+<p>此题使用优先级队列对部分频率进行排序<br>因为要统计最大前K个元素，只有小顶堆每次将最小的元素弹出，最后小顶堆里累积的才是前K个最大元素</p>
+<p>具体实现思路<br>先用map统计频率，之后构建小顶堆，将所有频率入到堆中，如果堆大小大于K，弹出堆顶，之后倒叙构建数组</p>
+<ol>
+<li>小顶堆实现</li>
+</ol>
+<p>注意代码写法<br>统计次数， map的getOrDefault写法</p>
+<p>怎么利用PriorityQueue建立小顶堆</p>
+<p>添加到小顶堆的操作</p>
+<p>顶堆的poll()<br>add()</p>
+<p>遍历map<br>Map.Entry&lt;Integer,Integer&gt; entry : map.entrySet()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] topKFrequent(<span class="type">int</span>[] nums, <span class="type">int</span> k) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; record = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i : nums)&#123;</span><br><span class="line">            record.put(i, record.getOrDefault(i, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        PriorityQueue&lt;<span class="type">int</span>[]&gt; pq = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;((pair1, pair2) -&gt; pair1[<span class="number">1</span>] - pair2[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;Integer, Integer&gt; entry: record.entrySet())&#123;</span><br><span class="line">            <span class="keyword">if</span> (pq.size() &lt; k)&#123;</span><br><span class="line">                pq.add(<span class="keyword">new</span> <span class="title class_">int</span>[] &#123;entry.getKey(), entry.getValue()&#125;);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (pq.peek()[<span class="number">1</span>] &lt; entry.getValue())&#123;</span><br><span class="line">                    pq.poll();</span><br><span class="line">                    pq.add(<span class="keyword">new</span> <span class="title class_">int</span>[] &#123;entry.getKey(), entry.getValue()&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] result = <span class="keyword">new</span> <span class="title class_">int</span>[k];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> k - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            result[i] = pq.poll()[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>大顶堆实现<br>大顶堆实现，比较暴力<br>把所有元素全部推入大顶堆中，有K个元素，就poll()K次得到数组</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] topKFrequent(<span class="type">int</span>[] nums, <span class="type">int</span> k) &#123;</span><br><span class="line"></span><br><span class="line">        Map&lt;Integer,Integer&gt; record = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i : nums)&#123;</span><br><span class="line">            record.put(i, record.getOrDefault(i, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        PriorityQueue&lt;<span class="type">int</span>[]&gt; pq = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;((pair1, pair2) -&gt; pair2[<span class="number">1</span>] - pair1[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;Integer, Integer&gt; entry : record.entrySet())&#123;</span><br><span class="line">            pq.add(<span class="keyword">new</span> <span class="title class_">int</span>[] &#123;entry.getKey(), entry.getValue()&#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] result = <span class="keyword">new</span> <span class="title class_">int</span>[k];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; k; i++)&#123;</span><br><span class="line">            result[i] = pq.poll()[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1163,102 +1284,6 @@
 <h1 id="1-两数之和"><a href="#1-两数之和" class="headerlink" title="1 两数之和"></a>1 两数之和</h1><p>利用map来做，assign key 和 value的pair<br>把index作为value， 把数组对应的value变成key</p>
 <p>查找差值，return两元素数组</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span>[] twoSum(<span class="type">int</span>[] nums, <span class="type">int</span> target)&#123;</span><br><span class="line">		<span class="type">int</span>[] result = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">        Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (nums == <span class="literal">null</span> || nums.length == <span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> result;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> target - nums[i];</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span> (map.containsKey(temp))&#123;</span><br><span class="line">				result[<span class="number">1</span>] = i;</span><br><span class="line">				result[<span class="number">0</span>] = map.get(temp);</span><br><span class="line">			</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			map.put(nums[i], i);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://apockira.github.io/2023/12/30/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%BA%94%E5%A4%A9%E5%A4%8D%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zhiwen Yang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leetcode Notes">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Leetcode Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/30/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%BA%94%E5%A4%A9%E5%A4%8D%E4%B9%A0/" class="post-title-link" itemprop="url">代码随想录第五天复习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2023-12-30 12:12:36 / Modified: 21:34:53" itemprop="dateCreated datePublished" datetime="2023-12-30T12:12:36-05:00">2023-12-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">代码随想录</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>704	二分查找				左闭右闭，左闭右开 两种方法 														checked!<br>27	移除元素				暴力解法 快慢指针 左右指针（while查找右边第一个不是val的值， 无需考虑right是什么值）	checked!<br>977	有序数组的平方			左右指针法（右指针– ！） 														checked!<br>209	长度最小的子数组		滑动窗口解决（左右指针，比较方法） 												checked!<br>59	螺旋数组II			模拟四次左闭右开（循环不变量原则）												checked!</p>
-<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><p>203	移除链表元素			有dummy node 有 pre, 无dummy node 有 pre										checked!<br>                        无dummy node 无 pre	（while只判断cur，while之中的while判断cur.next）			double checked!<br>707	设计链表				单链表 双链表 （此题切记，在插入方法，和删除方法中对size的运算）						checked!<br>206 反转链表				无递归，正向递归，反向递归(像背下来的)											checked!<br>                        反向同函数递归																	double checked!<br>24 	两两交换链表中的节点	无递归																		checked!	<br>                        有递归（需要着重复习）															unchecked!!!!!!<br>19	删除链表倒数第N个节点	两次遍历，一次遍历（快慢指针）													checked!<br>160	链表相交				两个for loop， 交换A 和 B														checked!<br>142	环形链表II			快慢指针，注意while loop的条件，如何查找环入口									checked!</p>
-<h1 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h1><p>704 二分查找 拓展<br>    35	搜索插入位置 		简单的二分法之后，return left													checked!<br>    <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">searchInsert</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (left &lt;= right)&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span> (nums[mid] == target)&#123;</span><br><span class="line">				<span class="keyword">return</span> mid;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target)&#123;</span><br><span class="line">				left = mid + <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				right = mid - <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> left;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>    34  在排序数组中查找元素的第一个和最后一个位置<br>                        二分法先查找出一个target的位置，后两个指针向两侧滑动到不是target值的位置				checked!<br>    <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span>[] searchRange(<span class="type">int</span>[] nums, <span class="type">int</span> target)&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> binarySearch(nums, target);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (index == -<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[] &#123;-<span class="number">1</span>,-<span class="number">1</span>&#125;;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> index;</span><br><span class="line">		<span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> index;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (left &gt;= <span class="number">0</span>&amp;&amp; nums[left] == target ) left--;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (right &lt;= nums.length - <span class="number">1</span> &amp;&amp; nums[right] == target) right++;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[] &#123;left+<span class="number">1</span>,right-<span class="number">1</span>&#125;;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (left&lt;= right)&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span> (nums[mid] == target)&#123;</span><br><span class="line">				<span class="keyword">return</span> mid;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target)&#123;</span><br><span class="line">				left = mid + <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				right = mid - <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>27	移除元素 拓展<br>    26 删除排序数组中的重复项																			checked!<br>                    快慢指针检测，注意条件的使用<br>    <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeDuplicates</span><span class="params">(<span class="type">int</span>[] nums)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (nums.length &lt; <span class="number">2</span>) <span class="keyword">return</span> nums.length;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">slowIndex</span> <span class="operator">=</span> <span class="number">0</span>, fastIndex = <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (fastIndex &lt; nums.length)&#123;</span><br><span class="line">			<span class="keyword">if</span> (nums[slowIndex] == nums[fastIndex])&#123;</span><br><span class="line">				fastIndex++;</span><br><span class="line">			</span><br><span class="line">			&#125; <span class="keyword">else</span>&#123;</span><br><span class="line">				slowIndex++;</span><br><span class="line">				nums[slowIndex] = nums[fastIndex];</span><br><span class="line">				fastIndex++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> slowIndex+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>链表拓展<br>234 回文链表</p>
-<ol>
-<li><p>把链表改装成数组，判断回文</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isPalindrome</span><span class="params">(ListNode head)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">cur</span> <span class="operator">=</span> head;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (cur != <span class="literal">null</span>)&#123;</span><br><span class="line">			cur= cur.next;</span><br><span class="line">			length++;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span>[] headList = <span class="keyword">new</span> <span class="title class_">int</span>[length];</span><br><span class="line">		cur = head;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; length; i++)&#123;</span><br><span class="line">			headList[i] = cur.val;</span><br><span class="line">			cur = cur.next;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = length - <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (left &lt;= right)&#123;</span><br><span class="line">			<span class="keyword">if</span> (headList[left]==headList[right])&#123;</span><br><span class="line">				left++;</span><br><span class="line">				right--;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>利用快慢指针</p>
-<ol>
-<li>快慢指针， 快指针进2步，慢指针进1步，找到中点</li>
-<li>在中点前断成两个LinkedList</li>
-<li>反转后面的链表</li>
-<li>对比短链表数量的值看是否相等</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isPalindrome</span><span class="params">(ListNode head)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (head == <span class="literal">null</span> || head.next == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">slowIndex</span> <span class="operator">=</span> head;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">fastIndex</span> <span class="operator">=</span> head;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (fastIndex != <span class="literal">null</span> &amp;&amp; fastIndex.next != <span class="literal">null</span>)&#123;</span><br><span class="line">			fastIndex = fastIndex.next.next;</span><br><span class="line">			slowIndex = slowIndex.next;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">curA</span> <span class="operator">=</span> reverseList(slowIndex);</span><br><span class="line">		slowIndex = <span class="literal">null</span>;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">curB</span> <span class="operator">=</span> head;</span><br><span class="line">			</span><br><span class="line">		<span class="keyword">while</span> (curA != <span class="literal">null</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span> (curA.val == curB.val)&#123;</span><br><span class="line">				curA = curA.next;</span><br><span class="line">				curB = curB.next;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> ListNode <span class="title function_">reverseList</span><span class="params">(ListNode head)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (head == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">if</span> (head != <span class="literal">null</span> &amp;&amp; head.next == <span class="literal">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">		</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">last</span> <span class="operator">=</span> reverseList(head.next);</span><br><span class="line">		head.next.next = head;</span><br><span class="line">		head.next = <span class="literal">null</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> last;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
 
