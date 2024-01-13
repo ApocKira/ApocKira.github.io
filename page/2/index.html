@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -155,6 +155,120 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://apockira.github.io/2024/01/04/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E5%8D%81%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhiwen Yang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leetcode Notes">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Leetcode Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/04/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E5%8D%81%E5%A4%A9/" class="post-title-link" itemprop="url">代码随想录第十天</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-01-04 06:41:12" itemprop="dateCreated datePublished" datetime="2024-01-04T06:41:12-05:00">2024-01-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-01-06 21:15:49" itemprop="dateModified" datetime="2024-01-06T21:15:49-05:00">2024-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">代码随想录</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="844-比较含退格的字符串"><a href="#844-比较含退格的字符串" class="headerlink" title="844 比较含退格的字符串"></a>844 比较含退格的字符串</h1><p>实时变换字符串，注意退格符超过string长度的情况</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">backspaceCompare</span><span class="params">(String s, String t)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sB</span> <span class="operator">=</span> getFinalString(s);</span><br><span class="line">        <span class="type">String</span> <span class="variable">tB</span> <span class="operator">=</span> getFinalString(t);</span><br><span class="line">        <span class="keyword">return</span> sB.equals(tB);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String <span class="title function_">getFinalString</span><span class="params">(String s)</span>&#123;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(i) != <span class="string">&#x27;#&#x27;</span>)&#123;</span><br><span class="line">                sb.append(s.charAt(i));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                sb.delete(sb.length() == <span class="number">0</span> ? <span class="number">0</span> :sb.length() - <span class="number">1</span>, sb.length());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="栈与队列理论基础"><a href="#栈与队列理论基础" class="headerlink" title="栈与队列理论基础"></a>栈与队列理论基础</h1><p>队列，先进先出<br>栈， 先进后出</p>
+<p>栈，push(), pop(),top();</p>
+<p>注意deque是双向队列，封住一端，可以成为栈</p>
+<h1 id="232-用栈实现队列"><a href="#232-用栈实现队列" class="headerlink" title="232 用栈实现队列"></a>232 用栈实现队列</h1><p>push(x) 放入队列尾部<br>pop() 从队列首部移除元素<br>peek() 返回队列首部元素<br>empty() 返回队列是否为空</p>
+<p>Java 创建栈的方法 Stack<Integer><br>栈的使用方法<br>.push(x) 放入栈<br>.pop() 退出栈<br>.peek() 返回栈顶元素<br>.isEmpty() 栈是否为空</p>
+<p>用栈实现队列，需要两个栈，一个栈进，一个栈出<br>如果队列要pop就要把栈进元素推进栈出，然后pop出来元素</p>
+<p><img src="https://code-thinking.cdn.bcebos.com/gifs/232.%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%E7%89%88%E6%9C%AC2.gif"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyQueue</span> &#123;</span><br><span class="line">    Stack&lt;Integer&gt; stackIn;</span><br><span class="line">    Stack&lt;Integer&gt; stackOut;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyQueue</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.stackIn = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">        <span class="built_in">this</span>.stackOut = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">        stackIn.push(x);</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">pop</span><span class="params">()</span> &#123;</span><br><span class="line">        dumpInStackOut();</span><br><span class="line">        <span class="keyword">return</span> stackOut.pop();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">peek</span><span class="params">()</span> &#123;</span><br><span class="line">        dumpInStackOut();</span><br><span class="line">        <span class="keyword">return</span> stackOut.peek();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">empty</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> stackIn.isEmpty() &amp;&amp; stackOut.isEmpty();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">dumpInStackOut</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!stackOut.isEmpty()) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">while</span> (!stackIn.isEmpty())&#123;</span><br><span class="line">            stackOut.push(stackIn.pop());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="225-用队列实现栈"><a href="#225-用队列实现栈" class="headerlink" title="225 用队列实现栈"></a>225 用队列实现栈</h1><p>push(x) 元素x入栈<br>pop() 移除栈顶元素<br>top() 获取栈顶元素<br>empty() 返回栈是否为空</p>
+<p>两个队列实现<br>用两个队列que1和que2实现队列的功能，que2其实完全就是一个备份的作用，把que1最后面的元素以外的元素都备份到que2，然后弹出最后面的元素，再把其他元素从que2导回que1。<br><img src="https://code-thinking.cdn.bcebos.com/gifs/225.%E7%94%A8%E9%98%9F%E5%88%97%E5%AE%9E%E7%8E%B0%E6%A0%88.gif"></p>
+<p>先把新元素推入q2之后把q1推到q2，之后q1 q2交换</p>
+<p>LinkedList Queue用法<br>.offer(x) 尾部添加元素<br>.isEmpty()  队列是否为空<br>.poll()  头部推出元素<br>.peek()  返回头部元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyStack</span>&#123;</span><br><span class="line">	Queue&lt;Integer&gt; queue1;</span><br><span class="line">	Queue&lt;Integer&gt; queue2;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">MyStack</span><span class="params">()</span>&#123;</span><br><span class="line">		queue1 = <span class="keyword">new</span> <span class="title class_">LinkedList</span>();</span><br><span class="line">		queue2 = <span class="keyword">new</span> <span class="title class_">LinkedList</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">		queue2.offer(x);</span><br><span class="line">		<span class="keyword">while</span> (!queue1.isEmpty())&#123;</span><br><span class="line">			queue2.offer(queue1.poll());</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		Queue&lt;Integer&gt; queueTemp = queue1;</span><br><span class="line">		queue1 = queue2;</span><br><span class="line">		queue2 = queueTemp;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">pop</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> queue1.poll();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">top</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> queue1.peek();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">empty</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> queue1.isEmpty();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>两个ArrayDeque 但是实际是两个Queue<br>ArrayDeque queue 用法<br>.add(int x) 尾部添加元素<br>.poll() 推出头部元素<br>.peek() 返回头部元素<br>.isEmpty() 队列是否为空</p>
+<p>先把q1 推到q2 之后q1推入新元素，再之后把q2推入q1完成队列</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyStack</span> &#123;</span><br><span class="line">	Queue&lt;Integer&gt; queue1;</span><br><span class="line">	Queue&lt;Integer&gt; queue2;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">MyStack</span><span class="params">()</span>&#123;</span><br><span class="line">		queue1 = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">		queue2 = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">		<span class="keyword">while</span> (!queue1.isEmpty())&#123;</span><br><span class="line">			queue2.add(queue1.poll());</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		queue1.add(x);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (!queue2.isEmpty())&#123;</span><br><span class="line">			queue1.add(queue2.poll());</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">pop</span><span class="params">()</span>&#123; <span class="keyword">return</span> queue1.poll();&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">top</span><span class="params">()</span>&#123; <span class="keyword">return</span> queue1.peek();&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">empty</span><span class="params">()</span> &#123;<span class="keyword">return</span> queue1.isEmpty();&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>两个Deque实现<br>.addLast();<br>.pollFirst();<br>.peekFirst();</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyStack</span> &#123;</span><br><span class="line">    <span class="comment">// Deque 接口继承了 Queue 接口</span></span><br><span class="line">    <span class="comment">// 所以 Queue 中的 add、poll、peek等效于 Deque 中的 addLast、pollFirst、peekFirst</span></span><br><span class="line">    Deque&lt;Integer&gt; que1; <span class="comment">// 和栈中保持一样元素的队列</span></span><br><span class="line">    Deque&lt;Integer&gt; que2; <span class="comment">// 辅助队列</span></span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyStack</span><span class="params">()</span> &#123;</span><br><span class="line">        que1 = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        que2 = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Push element x onto stack. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">        que1.addLast(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Removes the element on top of the stack and returns that element. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">pop</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> que1.size();</span><br><span class="line">        size--;</span><br><span class="line">        <span class="comment">// 将 que1 导入 que2 ，但留下最后一个值</span></span><br><span class="line">        <span class="keyword">while</span> (size-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            que2.addLast(que1.peekFirst());</span><br><span class="line">            que1.pollFirst();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> que1.pollFirst();</span><br><span class="line">        <span class="comment">// 将 que2 对象的引用赋给了 que1 ，此时 que1，que2 指向同一个队列</span></span><br><span class="line">        que1 = que2;</span><br><span class="line">        <span class="comment">// 如果直接操作 que2，que1 也会受到影响，所以为 que2 分配一个新的空间</span></span><br><span class="line">        que2 = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Get the top element. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">top</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> que1.peekLast();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns whether the stack is empty. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">empty</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> que1.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>一个Deque实现<br>调整q1顺序，把最后的元素推出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyStack</span> &#123;</span><br><span class="line">    <span class="comment">// Deque 接口继承了 Queue 接口</span></span><br><span class="line">    <span class="comment">// 所以 Queue 中的 add、poll、peek等效于 Deque 中的 addLast、pollFirst、peekFirst</span></span><br><span class="line">    Deque&lt;Integer&gt; que1; <span class="comment">// 和栈中保持一样元素的队列</span></span><br><span class="line">    Deque&lt;Integer&gt; que2; <span class="comment">// 辅助队列</span></span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyStack</span><span class="params">()</span> &#123;</span><br><span class="line">        que1 = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Push element x onto stack. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">        que1.addLast(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Removes the element on top of the stack and returns that element. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">pop</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> que1.size();</span><br><span class="line">        size--;</span><br><span class="line">        <span class="comment">// 将 que1 导入 que2 ，但留下最后一个值</span></span><br><span class="line">        <span class="keyword">while</span> (size-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            que1.addLast(que1.peekFirst());</span><br><span class="line">            que1.pollFirst();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> que1.pollFirst();</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Get the top element. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">top</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> que1.peekLast();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns whether the stack is empty. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">empty</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> que1.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>一个队列实现<br>一个队列在模拟栈弹出元素的时候只要将队列头部的元素（除了最后一个元素外） 重新添加到队列尾部，此时再去弹出元素就是栈的顺序了。</p>
+<p>把新元素推入queue之后，重新排列，把新元素推到顶上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyStack</span>&#123;</span><br><span class="line">	Queue&lt;Integer&gt; queue;</span><br><span class="line">	</span><br><span class="line">	pulic <span class="title function_">MyStack</span><span class="params">()</span>&#123;</span><br><span class="line">		queue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">		queue.offer(x);</span><br><span class="line">		<span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> queue.size();</span><br><span class="line">		<span class="keyword">while</span> (size-- &gt; <span class="number">1</span>)&#123;</span><br><span class="line">			queue.offer(queue.poll());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">pop</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> queue.poll();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">top</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> queue.peek();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">empty</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> queue.isEmpty();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1234,163 +1348,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://apockira.github.io/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%80%E5%A4%A9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Zhiwen Yang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leetcode Notes">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Leetcode Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%80%E5%A4%A9/" class="post-title-link" itemprop="url">代码随想录第一天</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-12-26 16:04:03" itemprop="dateCreated datePublished" datetime="2023-12-26T16:04:03-05:00">2023-12-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-30 21:58:34" itemprop="dateModified" datetime="2023-12-30T21:58:34-05:00">2023-12-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">代码随想录</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="数组理论基础"><a href="#数组理论基础" class="headerlink" title="数组理论基础"></a>数组理论基础</h1><p>数组存放在连续内存空间上的相同类型数据的集合</p>
-<p><strong>数组下标从0开始</strong><br><strong>数组内存空间的地址是连续的</strong></p>
-<p>Java 二维数组排布不是连续的</p>
-<h1 id="704-二分查找"><a href="#704-二分查找" class="headerlink" title="704 二分查找"></a>704 二分查找</h1><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-search/description/">Leetcode 704</a></p>
-<h2 id="考虑二分法的时机"><a href="#考虑二分法的时机" class="headerlink" title="考虑二分法的时机"></a>考虑二分法的时机</h2><blockquote>
-<p>数组有序，且无重复元素 （如果有重复元素，注意滑动窗口）</p>
-</blockquote>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><ul>
-<li>左闭右闭</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(target &lt; nums[<span class="number">0</span>] || target &gt; nums[nums.length - <span class="number">1</span>])&#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length-<span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">			<span class="keyword">if</span> (nums[mid] == target)&#123;</span><br><span class="line">				<span class="keyword">return</span> mid;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target)&#123;</span><br><span class="line">				left = mid + <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target)&#123;</span><br><span class="line">				right = mid - <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>左闭右开</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> target)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(target &lt; nums[<span class="number">0</span>] || target &gt; nums[nums.length - <span class="number">1</span>])&#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">			<span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span> (nums[mid] == target)&#123;</span><br><span class="line">				<span class="keyword">return</span> mid;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &lt; target)&#123;</span><br><span class="line">				left = mid + <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target)&#123;</span><br><span class="line">				right = mid;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="循环不变量原则"><a href="#循环不变量原则" class="headerlink" title="循环不变量原则"></a>循环不变量原则</h2><blockquote>
-<p><strong>注意右区间相关区别</strong> </p>
-</blockquote>
-<ul>
-<li>设置右起始值</li>
-<li>更新右值有区别</li>
-<li>while条件的区别</li>
-</ul>
-<h1 id="27-移除元素"><a href="#27-移除元素" class="headerlink" title="27 移除元素"></a>27 移除元素</h1><h2 id="Link-1"><a href="#Link-1" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-element/description/">Leetcode 27</a></p>
-<h2 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h2><blockquote>
-<p>数组元素删除过程复杂，因为数组长度不能更改，需要注意</p>
-</blockquote>
-<h2 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h2><ol>
-<li>暴力解法</li>
-</ol>
-<ul>
-<li>查到val之后，把剩余元素用for loop向前覆盖一位</li>
-<li>size自减1</li>
-<li>i不自增，重新检查覆盖之后的元素</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> nums.length;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; size; i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(nums[i] == val)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; size; j++)&#123;</span><br><span class="line">					nums[j-<span class="number">1</span>] = nums[j];</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				size--;</span><br><span class="line">				i--;</span><br><span class="line">			</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> size;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>快慢同向指针</li>
-</ol>
-<ul>
-<li>如果快指针找到val，慢指针不变</li>
-<li>如果快指针没找到val，慢指针位置被快指针位置元素覆盖，慢指针向下移一位</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">slowIndex</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">fastIndex</span> <span class="operator">=</span> <span class="number">0</span>; fastIndex &lt; nums.length; fastIndex++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(val != nums[fastIndex])&#123;</span><br><span class="line">				nums[slowIndex] = nums[fastIndex];</span><br><span class="line">				slowIndex++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> slowIndex;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>相向双指针</li>
-</ol>
-<ul>
-<li>右指针移到不是val的位置</li>
-<li>右指针的val覆盖左指针是val的位置</li>
-</ul>
-<blockquote>
-<p>需要两个while循环 查找右指针第一个指向不是val的位置</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(right &gt;= <span class="number">0</span> &amp;&amp; nums[right] == val) right--;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">			<span class="keyword">if</span> (nums[left] == val)&#123;</span><br><span class="line">				nums[left] = nums[right--];</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			left++;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">while</span>(right &gt;= <span class="number">0</span> &amp;&amp; nums[right] == val) right--;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> left;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li>直接覆盖右指针的值，不需要判断右指针的值</li>
-</ul>
-<blockquote>
-<p>不需要两个while循环</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">removeElement</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> val)</span>&#123;</span><br><span class="line">		<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> <span class="number">0</span>, right = nums.length - <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">			<span class="keyword">if</span>(nums[left] == val)&#123;</span><br><span class="line">				nums[left] = nums[right];</span><br><span class="line">				right--;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			    left++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> left;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>记得更新右指针的位置</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

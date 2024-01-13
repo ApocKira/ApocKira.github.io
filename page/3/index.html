@@ -19,30 +19,23 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"apockira.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="数组理论基础数组存放在连续内存空间上的相同类型数据的集合 数组下标从0开始数组内存空间的地址是连续的 Java 二维数组排布不是连续的 704 二分查找LinkLeetcode 704 考虑二分法的时机 数组有序，且无重复元素 （如果有重复元素，注意滑动窗口）  实现 左闭右闭  12345678910111213141516171819202122class Solution&#123;	pub">
-<meta property="og:type" content="article">
-<meta property="og:title" content="代码随想录第一天">
-<meta property="og:url" content="https://apockira.github.io/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%80%E5%A4%A9/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Leetcode Notes">
+<meta property="og:url" content="https://apockira.github.io/page/3/index.html">
 <meta property="og:site_name" content="Leetcode Notes">
-<meta property="og:description" content="数组理论基础数组存放在连续内存空间上的相同类型数据的集合 数组下标从0开始数组内存空间的地址是连续的 Java 二维数组排布不是连续的 704 二分查找LinkLeetcode 704 考虑二分法的时机 数组有序，且无重复元素 （如果有重复元素，注意滑动窗口）  实现 左闭右闭  12345678910111213141516171819202122class Solution&#123;	pub">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-12-26T21:04:03.000Z">
-<meta property="article:modified_time" content="2023-12-31T02:58:34.006Z">
 <meta property="article:author" content="Zhiwen Yang">
-<meta property="article:tag" content="数组">
-<meta property="article:tag" content="二分法">
-<meta property="article:tag" content="移除数组元素">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://apockira.github.io/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%80%E5%A4%A9/">
+<link rel="canonical" href="https://apockira.github.io/page/3/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://apockira.github.io/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%80%E5%A4%A9/","path":"2023/12/26/代码随想录第一天/","title":"代码随想录第一天"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"page/3/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>代码随想录第一天 | Leetcode Notes</title>
+<title>Leetcode Notes</title>
   
 
 
@@ -75,7 +68,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">Leetcode Notes</p>
+      <h1 class="site-title">Leetcode Notes</h1>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">代码随想录刷题笔记</p>
@@ -102,7 +95,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -115,7 +108,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">数组理论基础</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#704-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="nav-number">2.</span> <span class="nav-text">704 二分查找</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Link"><span class="nav-number">2.1.</span> <span class="nav-text">Link</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%83%E8%99%91%E4%BA%8C%E5%88%86%E6%B3%95%E7%9A%84%E6%97%B6%E6%9C%BA"><span class="nav-number">2.2.</span> <span class="nav-text">考虑二分法的时机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E4%B8%8D%E5%8F%98%E9%87%8F%E5%8E%9F%E5%88%99"><span class="nav-number">2.4.</span> <span class="nav-text">循环不变量原则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">3.</span> <span class="nav-text">27 移除元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Link-1"><span class="nav-number">3.1.</span> <span class="nav-text">Link</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">3.2.</span> <span class="nav-text">移除元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">3.3.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -162,17 +154,16 @@
 
     </div>
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner index posts-expand">
 
-
-  
+    
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://apockira.github.io/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%80%E5%A4%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -186,13 +177,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="代码随想录第一天 | Leetcode Notes">
+      <meta itemprop="name" content="undefined | Leetcode Notes">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          代码随想录第一天
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/26/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%B8%80%E5%A4%A9/" class="post-title-link" itemprop="url">代码随想录第一天</a>
+        </h2>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -230,7 +221,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="数组理论基础"><a href="#数组理论基础" class="headerlink" title="数组理论基础"></a>数组理论基础</h1><p>数组存放在连续内存空间上的相同类型数据的集合</p>
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="数组理论基础"><a href="#数组理论基础" class="headerlink" title="数组理论基础"></a>数组理论基础</h1><p>数组存放在连续内存空间上的相同类型数据的集合</p>
 <p><strong>数组下标从0开始</strong><br><strong>数组内存空间的地址是连续的</strong></p>
 <p>Java 二维数组排布不是连续的</p>
 <h1 id="704-二分查找"><a href="#704-二分查找" class="headerlink" title="704 二分查找"></a>704 二分查找</h1><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-search/description/">Leetcode 704</a></p>
@@ -302,6 +294,7 @@
 <p>记得更新右指针的位置</p>
 </blockquote>
 
+      
     </div>
 
     
@@ -309,23 +302,8 @@
     
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E7%BB%84/" rel="tag"># 数组</a>
-              <a href="/tags/%E4%BA%8C%E5%88%86%E6%B3%95/" rel="tag"># 二分法</a>
-              <a href="/tags/%E7%A7%BB%E9%99%A4%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0/" rel="tag"># 移除数组元素</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-            </div>
-            <div class="post-nav-item">
-                <a href="/2023/12/27/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E4%BA%8C%E5%A4%A9/" rel="next" title="代码随想录第二天">
-                  代码随想录第二天 <i class="fa fa-angle-right"></i>
-                </a>
-            </div>
-          </div>
+        <div class="post-eof"></div>
+      
     </footer>
   </article>
 </div>
@@ -333,7 +311,9 @@
 
 
 
-
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
 
 </div>
   </main>
