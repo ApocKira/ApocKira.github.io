@@ -122,7 +122,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -155,6 +155,113 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://apockira.github.io/2023/12/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E5%9B%9B%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhiwen Yang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leetcode Notes">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Leetcode Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/12/29/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E7%AC%AC%E5%9B%9B%E5%A4%A9/" class="post-title-link" itemprop="url">代码随想录第四天</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2023-12-29 21:56:33" itemprop="dateCreated datePublished" datetime="2023-12-29T21:56:33-05:00">2023-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-12-30 21:34:50" itemprop="dateModified" datetime="2023-12-30T21:34:50-05:00">2023-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">代码随想录</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="24-两两交换链表中的节点"><a href="#24-两两交换链表中的节点" class="headerlink" title="24 两两交换链表中的节点"></a>24 两两交换链表中的节点</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/swap-nodes-in-pairs/description/">https://leetcode.com/problems/swap-nodes-in-pairs/description/</a></p>
+<p>正常模拟交换过程</p>
+<p>首先建立dummy节点，之后设置第一节点，第二节点，temp<br>while 判断是否有两个节点可以交换</p>
+<p>模拟过程：<br>存储cur的第三个节点<br>存储cur的第二个节点<br>存储cur的第一个节点</p>
+<p>cur的next是第二个节点<br>第二个节点的next是第一个节点<br>第一个节点的next是第三个节点<br>之后cur移到第一个节点的位置（即新虚拟节点的位置）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> ListNode <span class="title function_">swapPairs</span><span class="params">(ListNode head)</span>&#123;</span><br><span class="line">		ListNode temp;</span><br><span class="line">		ListNode firstNode;</span><br><span class="line">		ListNode secondNode;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(-<span class="number">1</span>, head);</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">cur</span> <span class="operator">=</span> dummy;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (cur.next != <span class="literal">null</span> &amp;&amp; cur.next.next != <span class="literal">null</span>)&#123;</span><br><span class="line">			temp = cur.next.next.next;</span><br><span class="line">			firstNode = cur.next;</span><br><span class="line">			secondNode = cur.next.next;</span><br><span class="line">			</span><br><span class="line">			cur.next = secondNode;</span><br><span class="line">			secondNode.next = firstNode;</span><br><span class="line">			firstNode.next = temp;</span><br><span class="line">			</span><br><span class="line">			cur = firstNode;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> dummy.next;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>递归方法： 类似翻转链表中反向递归方法（需要研究）不是很明白</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> ListNode <span class="title function_">swapPairs</span><span class="params">(ListNode head)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (head == <span class="literal">null</span> || head.next == <span class="literal">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">next</span> <span class="operator">=</span> head.next;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">newNode</span> <span class="operator">=</span> swapPairs(next.next);</span><br><span class="line">		next.next = head;</span><br><span class="line">		head.next = newNode;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> next;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="19-删除链表倒数第N个节点"><a href="#19-删除链表倒数第N个节点" class="headerlink" title="19 删除链表倒数第N个节点"></a>19 删除链表倒数第N个节点</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/">https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/</a></p>
+<p>自己可以写出两次遍历的解法：<br>第一次找到size<br>第二次把节点删除</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> ListNode <span class="title function_">removeNthFromEnd</span><span class="params">(ListNode head, <span class="type">int</span> n)</span>&#123;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(-<span class="number">1</span>,head);</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">pre</span> <span class="operator">=</span> dummy;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">cur</span> <span class="operator">=</span> head;</span><br><span class="line">		<span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (cur != <span class="literal">null</span>)&#123;</span><br><span class="line">			cur = cur.next;</span><br><span class="line">			size++;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; size - n; i++)&#123;</span><br><span class="line">			pre = pre.next;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		pre.next = pre.next.next;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> dummy.next;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>快慢指针经典题目</p>
+<p>设置双指针，快指针先走n步，后快指针和慢指针一起走到快指针的链表尽头，此时删除慢指针所指node</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> ListNode <span class="title function_">removeNthFromEnd</span><span class="params">(ListNode head, <span class="type">int</span> n)</span>&#123;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(-<span class="number">1</span>, head);</span><br><span class="line">		</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">fastNode</span> <span class="operator">=</span> dummy;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">slowNode</span> <span class="operator">=</span> dummy;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= n; i++)&#123;</span><br><span class="line">			fastNode = fastNode.next;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (fastNode != <span class="literal">null</span>)&#123;</span><br><span class="line">			fastNode = fastNode.next;</span><br><span class="line">			slowNode = slowNode.next;</span><br><span class="line">		&#125;</span><br><span class="line">		slowNode.next = slowNode.next.next;</span><br><span class="line">		<span class="keyword">return</span> dummy.next;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="160-链表相交"><a href="#160-链表相交" class="headerlink" title="160 链表相交"></a>160 链表相交</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/intersection-of-two-linked-lists/description/">https://leetcode.com/problems/intersection-of-two-linked-lists/description/</a><br>求两链表交点节点的指针<br>首先求出两链表的长度<br>把两个链表的尾部对齐，即把长链表的指针指到和短链表相同长度<br>如果指针数值相同则相交，否则向后移动指到null</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> ListNode <span class="title function_">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span>&#123;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">curA</span> <span class="operator">=</span> headA;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">curB</span> <span class="operator">=</span> headB;</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> <span class="variable">sizeA</span> <span class="operator">=</span> <span class="number">0</span>; </span><br><span class="line">		<span class="type">int</span> <span class="variable">sizeB</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (curA != <span class="literal">null</span>)&#123;</span><br><span class="line">			curA = curA.next;</span><br><span class="line">			sizeA++;</span><br><span class="line">		&#125; </span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (curB != <span class="literal">null</span>)&#123;</span><br><span class="line">			curB = curB.next;</span><br><span class="line">			sizeB++;</span><br><span class="line">		&#125; </span><br><span class="line">		</span><br><span class="line">		curA = headA;</span><br><span class="line">		curB = headB;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (sizeA &lt; sizeB)&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; sizeB-sizeA; i++)&#123;</span><br><span class="line">				curB = curB.next;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (sizeA &gt; sizeB)&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; sizeA-sizeB; i++)&#123;</span><br><span class="line">				curA = curA.next;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (curA != <span class="literal">null</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(curA == curB)&#123;</span><br><span class="line">				<span class="keyword">return</span> curA;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				curA = curA.next;</span><br><span class="line">				curB = curB.next;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="142-环形链表II"><a href="#142-环形链表II" class="headerlink" title="142 环形链表II"></a>142 环形链表II</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/linked-list-cycle-ii/description/">https://leetcode.com/problems/linked-list-cycle-ii/description/</a></p>
+<p>判断链表内是否有环：<br>可通过快慢指针来判断，快走两步，慢走一步，这样如果两指针相遇，则链表内定存在环</p>
+<p>如果有环如何判断环入口：<br>通过公式化简可得：<br>如果快指针走过一圈后就遇到慢指针，则从遇到的点开始和头节点同时走相同步数，两指针相遇的点即为入口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> ListNode <span class="title function_">detectCycle</span><span class="params">(ListNode head)</span>&#123;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">slowIndex</span> <span class="operator">=</span> head;</span><br><span class="line">		<span class="type">ListNode</span> <span class="variable">fastIndex</span> <span class="operator">=</span> head;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">while</span> (fastIndex != <span class="literal">null</span> &amp;&amp; fastIndex.next != <span class="literal">null</span>)&#123;</span><br><span class="line">			slowIndex = slowIndex.next;</span><br><span class="line">			fastIndex = fastIndex.next.next;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span> (slowIndex == fastIndex)&#123;</span><br><span class="line">				<span class="type">ListNode</span> <span class="variable">index1</span> <span class="operator">=</span> slowIndex;</span><br><span class="line">				<span class="type">ListNode</span> <span class="variable">index2</span> <span class="operator">=</span> head;</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">while</span> (index1 != index2)&#123;</span><br><span class="line">					index1 = index1.next;</span><br><span class="line">					index2 = index2.next;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				<span class="keyword">return</span> index1;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
